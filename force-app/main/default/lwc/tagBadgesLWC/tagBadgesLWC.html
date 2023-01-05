@@ -1,0 +1,86 @@
+<template>
+  
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <!-- <span class="slds-icon_container slds-icon-standard-quotes" title="Tags">
+            <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+              <use xlink:href="/Assets/icons/standard-sprite/svg/symbols.svg#quotes"></use>
+            </svg>
+            <span class="slds-assistive-text">Tags</span>
+          </span> -->
+          <lightning-icon icon-name="standard:quotes" alternative-text="Tags" title="Tags"></lightning-icon>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <a href="#" class="slds-card__header-link slds-truncate" title="Tags">
+              <span>Tags</span>
+            </a>
+          </h2>
+        </div>
+        <div class="slds-no-flex">
+          <button class="slds-button slds-button_brand" onclick={openModal} aria-haspopup="true">New</button>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+        <template if:true={tags}>
+          <div class="slds-box slds-theme_default slds-p-around_none">
+            <div
+            class="slds-grid slds-grid_vertical-align-center slds-p-horizontal_medium"
+            >
+            <template for:each={tags} for:item="tag">
+              <div
+              key={tag.name}
+              class="slds-grid_pull-padded-xxx-small"
+              style="padding: 5px"
+              >
+              <img src={tag.url} alt={tag.name} />
+            </div>
+          </template>
+        </div>
+      </div>
+      
+    </template>
+  </div>
+<footer class="slds-card__footer">
+</footer>
+</article>
+
+<template if:true={isModalOpen}>
+  <!-- Modal/Popup Box LWC starts here -->
+  <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <!-- Modal/Popup Box LWC header here -->
+      <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+          <lightning-icon icon-name="utility:close"
+          alternative-text="close"
+          variant="inverse"
+          size="small" ></lightning-icon>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+      </header>
+      <!-- Modal/Popup Box LWC body starts here -->
+      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <lightning-flow
+        flow-api-name="Add_Tags"
+        flow-input-variables={inputVariables}
+        onstatuschange={handleStatusChange}
+        >
+      </lightning-flow> 
+      <!-- <p><b>Modals/Popup Box are used to display content in a layer above the app.
+      </b></p>
+      <p><b>This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.
+      </b></p>-->
+    </div>
+    <!-- Modal/Popup Box LWC footer starts here -->
+    <footer class="slds-modal__footer">
+      <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+    </footer>
+  </div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+</template> 

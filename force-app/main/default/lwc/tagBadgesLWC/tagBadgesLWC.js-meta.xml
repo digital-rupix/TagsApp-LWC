@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <!-- Make this exposed for Lightning_RecordPages with a String input property to grab the current recordId and Wire the tags to it.-->
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <!-- <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="recordId" type="@salesforce/schema/Salesforce_Request__c" />
+        </targetConfig>
+    </targetConfigs>-->
+</LightningComponentBundle>

@@ -1,0 +1,49 @@
+<template if:true={isModalOpen}>
+  <!-- Modal/Popup Box LWC starts here -->
+  <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <!-- Modal/Popup Box LWC header here -->
+      <header class="slds-modal__header">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+          <lightning-icon icon-name="utility:close"
+          alternative-text="close"
+          variant="inverse"
+          size="small" ></lightning-icon>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Tag Relationships</h2>
+      </header>
+      <!-- Modal/Popup Box LWC body starts here -->
+      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <lightning-flow
+        flow-api-name="Add_Tags"
+        flow-input-variables={inputVariables}
+        onstatuschange={handleStatusChange}
+        >
+      </lightning-flow> 
+      <!-- <p><b>Modals/Popup Box are used to display content in a layer above the app.
+      </b></p>
+      <p><b>This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.
+      </b></p>-->
+    </div>
+    <!-- Modal/Popup Box LWC footer starts here -->
+    <footer class="slds-modal__footer">
+      <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+    </footer>
+  </div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+
+<template if:true={isModelOpen}>
+    <div class="slds-card__body slds-card__body_inner">
+      <lightning-flow
+      flow-api-name={flowName}
+      flow-input-variables={inputVariables}
+      onstatuschange={handleStatusChange}
+      >
+    </lightning-flow> 
+    </div>
+  </template>

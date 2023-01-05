@@ -1,0 +1,13 @@
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background-color: #ccc;
+    border-radius: 3px;
+    color: #333;
+    font-size: 0.9rem;
+    margin: 0.5rem;
+    padding: 0.25rem 0.5rem;
+}
