@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <description>Flow Screen Color Picker with groupings and Gradient</description>
+    <masterLabel>Color Picker FSC</masterLabel>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="label" label="Label" type="String"
+                description="Manual Color Selector, with Groupings" required="false"
+                default="Choose Custom Color" />
+            <property name="selectedValue" label="Value" type="String"
+                description="The value of the selected color" required="false" role="outputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
