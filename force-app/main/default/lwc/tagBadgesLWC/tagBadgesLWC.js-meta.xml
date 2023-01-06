@@ -6,9 +6,9 @@
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
-    <!-- <targetConfigs>
+    <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="recordId" type="@salesforce/schema/Salesforce_Request__c" />
+            <property name="object" label="Record Object" type="String" description="The API name of the Object this component is on." required="true" />
         </targetConfig>
-    </targetConfigs>-->
+    </targetConfigs>
 </LightningComponentBundle>

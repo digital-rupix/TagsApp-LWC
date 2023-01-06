@@ -5,6 +5,7 @@ export default class TagBadges extends LightningElement {
   @api recordId;
   @track tags = [];
   @track tagRelationships;
+  @api object;
   
   @wire(getTagRelationships, { recordId: '$recordId' })
   wiredRecord({ error, data }) {
@@ -29,10 +30,15 @@ export default class TagBadges extends LightningElement {
   
   get inputVariables() {
     return [
-       {
+      {
         name: 'recordId',
         type: 'String',
         value: this.recordId
+      },
+      {
+        name: 'objectName',
+        type: 'String',
+        value: this.object
       } 
     ];
   }
