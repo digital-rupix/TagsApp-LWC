@@ -3,7 +3,8 @@ import { LightningElement, api } from 'lwc';
 export default class ColorPickerFSC extends LightningElement {
     @api label;
     @api selectedValue;
-
+    @api value;
+    
     colors = [
         {
             color: '#eef4ff',

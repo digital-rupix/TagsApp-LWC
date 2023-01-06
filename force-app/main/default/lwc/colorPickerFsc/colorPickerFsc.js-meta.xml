@@ -10,10 +10,12 @@
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property name="label" label="Label" type="String"
-                description="Manual Color Selector, with Groupings" required="false"
+                description="Label of the color picker to be displayed" required="false"
                 default="Choose Custom Color" />
-            <property name="selectedValue" label="Value" type="String"
+            <property name="selectedValue" label="Selected Color Value" type="String"
                 description="The value of the selected color" required="false" role="outputOnly" />
+            <property name="value" label="Color Value" type="String"
+                description="The value of the color" required="false" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
