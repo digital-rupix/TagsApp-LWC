@@ -1,3 +1,4 @@
+<!-- sldsValidatorIgnore -->
 <!--
   @description       : 
   @author            : Marc Swan
@@ -9,7 +10,6 @@
   1.0   01-06-2023   Marc Swan   Initial Version
 -->
 <template>
-  
   <article class="slds-card">
     <div class="slds-card__header slds-grid">
       <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -38,7 +38,7 @@
         <template if:true={tags}>
           <div class="slds-box slds-theme_default slds-p-around_none">
             <div
-            class="slds-grid slds-grid_vertical-align-center slds-p-horizontal_medium"
+            class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium"
             >
             <template for:each={tags} for:item="tag">
               <div

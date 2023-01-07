@@ -10,12 +10,79 @@
 **/
 import { LightningElement, api, track, wire } from "lwc";
 import getTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getTagRelationships';
-
 export default class TagBadges extends LightningElement {
   @api recordId;
   @track tags = [];
   @track tagRelationships;
   @api object;
+  @api objectApiName;
+
+  columns = [
+    {
+        label: 'Checkbox button',
+        fieldName: 'checkboxButton',
+        type: 'checkbox-button',
+        typeAttributes: {
+            disabled: { fieldName: 'checkboxButtonDisabled' },
+            label: 'Checkbox'
+        },
+        editable: true
+    },
+    {
+        label: 'Color Picker',
+        fieldName: 'colorPicker',
+        type: 'color-picker',
+        typeAttributes: {
+            colors: [
+                '#00a1e0',
+                '#16325c',
+                '#76ded9',
+                '#08a69e',
+                '#e2ce7d',
+                '#e69f00'
+            ],
+            disabled: { fieldName: 'colorPickerDisabled' },
+            label: 'Pick a color',
+            opacity: true
+        },
+        fixedWidth: 250,
+        editable: true
+    },
+    {
+        label: 'Combobox',
+        fieldName: 'combobox',
+        type: 'combobox',
+        typeAttributes: {
+            label: 'Simple Combobox',
+            options: { fieldName: 'options' },
+            isMultiSelect: { fieldName: 'isMultiSelect' }
+        },
+        editable: true
+    },
+    {
+        label: 'Currency',
+        fieldName: 'currency',
+        type: 'currency',
+        typeAttributes: {
+            currencyCode: 'CAD'
+        },
+        editable: true
+    },
+    {
+        label: 'Counter',
+        fieldName: 'counter',
+        type: 'counter',
+        typeAttributes: {
+            disabled: { fieldName: 'counterDisabled' },
+            label: 'Counter',
+            step: { fieldName: 'counterStep' }
+        },
+        editable: true,
+        cellAttributes: {
+            alignment: 'center'
+        }
+    }
+];
   
   @wire(getTagRelationships, { recordId: '$recordId' })
   wiredRecord({ error, data }) {
@@ -48,7 +115,7 @@ export default class TagBadges extends LightningElement {
       {
         name: 'objectName',
         type: 'String',
-        value: this.object
+        value: this.objectApiName
       } 
     ];
   }
