@@ -1,3 +1,13 @@
+<!--
+  @description       : 
+  @author            : Marc Swan
+  @group             : 
+  @last modified on  : 01-06-2023
+  @last modified by  : Marc Swan
+  Modifications Log
+  Ver   Date         Author      Modification
+  1.0   01-06-2023   Marc Swan   Initial Version
+-->
 <template>
   
   <article class="slds-card">
@@ -36,7 +46,7 @@
               class="slds-grid_pull-padded-xxx-small"
               style="padding: 5px"
               >
-              <img src={tag.url} alt={tag.name} />
+              <img src={tag.url} alt={tag.name} onclick={openDialog}/>
             </div>
           </template>
         </div>
@@ -58,7 +68,7 @@
           <lightning-icon icon-name="utility:close"
           alternative-text="close"
           variant="inverse"
-          size="small" ></lightning-icon>
+          size="small"  label="Close"></lightning-icon>
           <span class="slds-assistive-text">Close</span>
         </button>
       </header>
@@ -83,4 +93,21 @@
 </section>
 <div class="slds-backdrop slds-backdrop_open"></div>
 </template>
+
+  <c-avonni-dialog dialog-name="dialog">
+    <p slot="title" class="slds-modal__title slds-hyphenate">
+        All records this Tag is used on
+    </p>
+    <c-avonni-datatable
+    columns={columns}
+    records={records}
+    key-field="id"
+    column-widths-mode="auto"
+>
+</c-avonni-datatable>
+    <div slot="footer">
+        <lightning-button label="Cancel"></lightning-button>
+    </div>
+</c-avonni-dialog>
+
 </template> 

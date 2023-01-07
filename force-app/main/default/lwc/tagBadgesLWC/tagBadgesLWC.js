@@ -1,3 +1,13 @@
+/**
+ * @description       : 
+ * @author            : Marc Swan
+ * @group             : 
+ * @last modified on  : 01-06-2023
+ * @last modified by  : Marc Swan
+ * Modifications Log
+ * Ver   Date         Author      Modification
+ * 1.0   01-06-2023   Marc Swan   Initial Version
+**/
 import { LightningElement, api, track, wire } from "lwc";
 import getTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getTagRelationships';
 
@@ -61,4 +71,9 @@ export default class TagBadges extends LightningElement {
       window.location.reload();
     } 
   }
+
+  openDialog() {
+    const dialog = this.template.querySelector('avonni-dialog');
+    dialog.show();
+}
 }

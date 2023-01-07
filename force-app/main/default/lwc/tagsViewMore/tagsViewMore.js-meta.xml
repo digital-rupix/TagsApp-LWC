@@ -1,0 +1,17 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>55.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Tags View More </masterLabel>
+	<description>Button dialog modal to view where a tag is used.</description>
+	<targets>
+		<target>lightning__RecordPage</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__RecordPage">
+			<supportedFormFactors>
+				<supportedFormFactor type="Small"/>
+				<supportedFormFactor type="Large"/>
+			</supportedFormFactors>
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>
