@@ -10,7 +10,6 @@
 **/
 import { LightningElement, api, track, wire } from "lwc";
 import getTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getTagRelationships';
-import getAllTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getAllTagRelationships';
 import findMatchingRelationships from '@salesforce/apex/FindMatchingTagRelationships.findMatchingRelationships';
 export default class TagBadges extends LightningElement {
   @api recordId;
@@ -120,20 +119,4 @@ export default class TagBadges extends LightningElement {
     
   }
 
-  handleViewAll(event) {
-    getAllTagRelationships({ recordId: '$recordId' })
-    if (error) {
-      console.error(error);
-    } else if (data) {
-      this.tagAllRelationships = data;
-      this.tagsAll = this.tagAllRelationships.map((tr) => ({
-        name: tr.Tag,
-        id: tr.Id,
-        url: this.generateUrl(tr.Category, tr.Tag, tr.Color)
-      }));
-    }
-    
-    dialog.show();
-    
-  }
 }
