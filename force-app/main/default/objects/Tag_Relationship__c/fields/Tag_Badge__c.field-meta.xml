@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tag_Badge__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(&quot;https://img.shields.io/badge/&quot;&amp; Tag__r.Category__c &amp;&quot;-&quot;&amp; Tag__r.Name__c &amp;&quot;-&quot;&amp; TEXT(Tag__r.Color__c), &quot;Tag Badge&quot; )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Tag Badge</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

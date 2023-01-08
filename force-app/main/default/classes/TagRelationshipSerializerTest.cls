@@ -21,5 +21,5 @@ private class TagRelationshipSerializerTest {
         System.assertEquals('red', result[0].get('Color'));
         System.assertEquals('Category 2', result[1].get('Category'));
         System.assertEquals('blue', result[1].get('Color'));
-        }
     }
+}
