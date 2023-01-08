@@ -113,6 +113,55 @@
 </c-avonni-datatable>
 </template>
 <template if:true={viewAll}>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <!-- <span class="slds-icon_container slds-icon-standard-quotes" title="Tags">
+            <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+              <use xlink:href="/Assets/icons/standard-sprite/svg/symbols.svg#quotes"></use>
+            </svg>
+            <span class="slds-assistive-text">Tags</span>
+          </span> -->
+          <lightning-icon icon-name="standard:quotes" alternative-text="Tags" title="Tags"></lightning-icon>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <a href="#" class="slds-card__header-link slds-truncate" title="Tags">
+              <span>Tags</span>
+            </a>
+          </h2>
+        </div>
+        <div class="slds-no-flex">
+          <button class="slds-button slds-button_brand" onclick={openModal} aria-haspopup="true">New</button>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+      <template if:true={tags}>
+        <div class="slds-box slds-theme_default slds-p-around_none">
+          <div
+          class="slds-grid slds-grid_vertical-align-center slds-var-p-horizontal_medium"
+          >
+          <template for:each={tags} for:item="tag">
+            <div
+              key={tag.id}
+              class="slds-grid_pull-padded-xxx-small"
+              style="padding: 5px"
+              data-id={tag.id}
+              onclick={openDialog}
+            >
+              <img src={tag.url} alt={tag.name} />
+            </div>
+          </template>
+      </div>
+    </div>
+    
+  </template>
+</div>
+<footer class="slds-card__footer">
+</footer>
+</article>
 </template>
 <div slot="footer">
   <lightning-button label="Cancel"></lightning-button>
