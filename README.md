@@ -1,6 +1,6 @@
 # TagBadges
 
-<a href="https://githubsfdeploy.herokuapp.com?owner=digital-rupix&amp;repo=TagsApp-LWC">
+<a href="https://githubsfdeploy.herokuapp.com/?owner=digital-rupix&repo=TagsApp-LWC&ref=main">
   <img src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png" alt="Deploy to Salesforce" />
 </a>
 
