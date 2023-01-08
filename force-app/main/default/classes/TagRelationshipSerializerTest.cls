@@ -46,6 +46,4 @@ private class TagRelationshipSerializerTest {
         System.assertEquals(testTagRelationship1.Id, records[0].get('id'), 'Unexpected record returned');
         System.assertEquals('Account', records[0].get('objectName'), 'Unexpected record returned');
     }
-    
-    
 }
