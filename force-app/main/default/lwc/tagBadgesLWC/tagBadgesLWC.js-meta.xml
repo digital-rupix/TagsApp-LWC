@@ -2,13 +2,15 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
     <isExposed>true</isExposed>
-    <!-- Make this exposed for Lightning_RecordPages with a String input property to grab the current recordId and Wire the tags to it.-->
+    <!-- Make this exposed for Lightning_RecordPages with a String input property to grab the
+    current recordId and Wire the tags to it.-->
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="object" label="Record Object" type="String" description="The API name of the Object this component is on." required="true" />
+            <property name="object" label="Record Object" type="String"
+                description="The API name of the Object this component is on." />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
