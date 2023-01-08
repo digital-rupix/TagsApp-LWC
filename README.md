@@ -1,5 +1,9 @@
 # TagBadges
 
+<a href="https://githubsfdeploy.herokuapp.com?owner=digital-rupix&amp;repo=TagsApp-LWC">
+  <img src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/src/main/webapp/resources/img/deploy.png" alt="Deploy to Salesforce" />
+</a>
+
 This is a Lightning Web Component that displays a list of tags for a given record. It also allows users to add more tags and view related records for a specific tag.
 Properties
 
