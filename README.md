@@ -1,18 +1,43 @@
-# Salesforce DX Project: Next Steps
+# TagBadges
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This is a Lightning Web Component that displays a list of tags for a given record. It also allows users to add more tags and view related records for a specific tag.
+Properties
 
-## How Do You Plan to Deploy Your Changes?
+    - `recordId` (api): ID of the record to display tags for
+    - `tags` (track): Array of objects representing the tags for the record, with each object having the following properties:
+    -     `name`: Name of the tag
+    -     `id`: ID of the tag
+    -     `url`: URL of the tag's badge image
+    - `tagRelationships`: Array of tag relationship objects
+    - `tagsAll` (track): Array of objects representing all tags, with each object having the following properties:
+    -     `name`: Name of the tag
+    -     `id`: ID of the tag
+    -     `url`: URL of the tag's badge image
+    - `tagAllRelationships`: Array of all tag relationship objects
+    - `object`: Object representing the record
+    - `objectApiName` (api): API name of the object
+    - `tagId` (api): ID of the selected tag
+    - `records`: Array of related record objects
+    - `datatableView` (track): Boolean indicating whether the related records should be displayed in a data table
+    - `viewAll` (track): Boolean indicating whether all tags should be displayed
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+    # Methods
 
-## Configure Your Salesforce DX Project
+    - `generateUrl`: Generates the URL for a tag's badge image based on its category, name, and color
+    - `openModal`: Opens the modal to add more tags
+    - `closeModal`: Closes the modal to add more tags
+    - `handleStatusChange`: Handles the change in status of the flow to add more tags. If the flow finishes, it closes the modal and reloads the page.
+    - `openDialog`: Opens the dialog to view related records for a specific tag
+    - `closeDialog`: Closes the dialog to view related records for a specific tag
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+# Data Retrieval
 
-## Read All About It
+The `tags` and `tagRelationships` properties are populated using a wire method that calls the `getTagRelationships` Apex method, passing in the `recordId` as a parameter.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+The `records` property is populated using the `findMatchingRelationships` Apex method, which is called in the `openDialog` method and passed the `tagId` as a parameter.
+
+# Other Information
+
+The component includes a flow named `Add_Tags` and has input variables `recordId` and `objectName`.
+
+A modal and a dialog are used to allow users to add more tags and view related records, respectively. The `isModalOpen` tracked property is used to determine whether the modal is open or not, while the `datatableView` tracked property is used to determine whether the related records should be displayed in a data table or not.
