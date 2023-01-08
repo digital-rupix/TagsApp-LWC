@@ -21,7 +21,7 @@ Properties
     - `datatableView` (track): Boolean indicating whether the related records should be displayed in a data table
     - `viewAll` (track): Boolean indicating whether all tags should be displayed
 
-    # Methods
+# Methods
 
     - `generateUrl`: Generates the URL for a tag's badge image based on its category, name, and color
     - `openModal`: Opens the modal to add more tags
@@ -41,3 +41,15 @@ The `records` property is populated using the `findMatchingRelationships` Apex m
 The component includes a flow named `Add_Tags` and has input variables `recordId` and `objectName`.
 
 A modal and a dialog are used to allow users to add more tags and view related records, respectively. The `isModalOpen` tracked property is used to determine whether the modal is open or not, while the `datatableView` tracked property is used to determine whether the related records should be displayed in a data table or not.
+
+# Requirements
+
+This component package requires the Avonni-Components package to be installed. The package can be found here: `https://github.com/avonni/base-components-sfdx`
+
+Finally, the Unofficial SF `BasePacks` need to be installed from here: `https://unofficialsf.com/flow-action-and-screen-component-basepacks/`
+
+# Thanks and Credit
+
+@mitchspano
+@jamessimone
+@jkranz-rk
