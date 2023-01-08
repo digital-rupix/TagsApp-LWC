@@ -1,88 +1,47 @@
 /**
- * @description       : 
- * @author            : Marc Swan
- * @group             : 
- * @last modified on  : 01-06-2023
- * @last modified by  : Marc Swan
- * Modifications Log
- * Ver   Date         Author      Modification
- * 1.0   01-06-2023   Marc Swan   Initial Version
+* @description       : 
+* @author            : Marc Swan
+* @group             : 
+* @last modified on  : 01-06-2023
+* @last modified by  : Marc Swan
+* Modifications Log
+* Ver   Date         Author      Modification
+* 1.0   01-06-2023   Marc Swan   Initial Version
 **/
 import { LightningElement, api, track, wire } from "lwc";
 import getTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getTagRelationships';
+import getAllTagRelationships from '@salesforce/apex/TagRelationshipSerializer.getAllTagRelationships';
+import findMatchingRelationships from '@salesforce/apex/FindMatchingTagRelationships.findMatchingRelationships';
 export default class TagBadges extends LightningElement {
   @api recordId;
   @track tags = [];
   @track tagRelationships;
+  @track tagsAll = [];
+  @track tagAllRelationships;
   @api object;
   @api objectApiName;
-
+  //@track tagId;
+  @api tagId;
+  @api records;
+  @track datatableView = false;
+  @track viewAll = false;
+  
   columns = [
     {
-        label: 'Checkbox button',
-        fieldName: 'checkboxButton',
-        type: 'checkbox-button',
-        typeAttributes: {
-            disabled: { fieldName: 'checkboxButtonDisabled' },
-            label: 'Checkbox'
-        },
-        editable: true
-    },
-    {
-        label: 'Color Picker',
-        fieldName: 'colorPicker',
-        type: 'color-picker',
-        typeAttributes: {
-            colors: [
-                '#00a1e0',
-                '#16325c',
-                '#76ded9',
-                '#08a69e',
-                '#e2ce7d',
-                '#e69f00'
-            ],
-            disabled: { fieldName: 'colorPickerDisabled' },
-            label: 'Pick a color',
-            opacity: true
-        },
-        fixedWidth: 250,
-        editable: true
-    },
-    {
-        label: 'Combobox',
-        fieldName: 'combobox',
-        type: 'combobox',
-        typeAttributes: {
-            label: 'Simple Combobox',
-            options: { fieldName: 'options' },
-            isMultiSelect: { fieldName: 'isMultiSelect' }
-        },
-        editable: true
-    },
-    {
-        label: 'Currency',
-        fieldName: 'currency',
-        type: 'currency',
-        typeAttributes: {
-            currencyCode: 'CAD'
-        },
-        editable: true
-    },
-    {
-        label: 'Counter',
-        fieldName: 'counter',
-        type: 'counter',
-        typeAttributes: {
-            disabled: { fieldName: 'counterDisabled' },
-            label: 'Counter',
-            step: { fieldName: 'counterStep' }
-        },
-        editable: true,
-        cellAttributes: {
-            alignment: 'center'
-        }
+      label: 'Name',
+      fieldName: 'recordLink',
+      type: 'url',
+      typeAttributes: {
+        label: { fieldName: 'urlLabel' },
+        target: '_blank'
     }
-];
+    },
+    {
+      label: 'Record Type',
+      fieldName: 'objectName',
+      type: 'text'
+    }
+  ];
   
   @wire(getTagRelationships, { recordId: '$recordId' })
   wiredRecord({ error, data }) {
@@ -92,6 +51,7 @@ export default class TagBadges extends LightningElement {
       this.tagRelationships = data;
       this.tags = this.tagRelationships.map((tr) => ({
         name: tr.Tag,
+        id: tr.Id,
         url: this.generateUrl(tr.Category, tr.Tag, tr.Color)
       }));
     }
@@ -100,7 +60,7 @@ export default class TagBadges extends LightningElement {
   generateUrl(category, tag, color) {
     return `https://img.shields.io/badge/${category}-${tag}-${color}`;
   }
-
+  
   get flowName() {
     flowname = 'Add_Tags';
   }
@@ -130,7 +90,7 @@ export default class TagBadges extends LightningElement {
     // to close modal set isModalOpen tarck value as false
     this.isModalOpen = false;
   }
-
+  
   handleStatusChange(event) {
     if (event.detail.status === 'FINISHED') {
       console.log('handleStatusChange', event.detail);
@@ -138,9 +98,42 @@ export default class TagBadges extends LightningElement {
       window.location.reload();
     } 
   }
-
-  openDialog() {
-    const dialog = this.template.querySelector('avonni-dialog');
+  
+  openDialog(event) {
+    const dialog = this.template.querySelector('c-avonni-dialog');
+    console.log(JSON.stringify({ ...event.currentTarget.dataset }));
+    const tagId = event.currentTarget.dataset.id;
+    findMatchingRelationships({ tagId: tagId })
+    .then(result => {
+      this.records = result;
+      this.error = null;
+      this.datatableView = true;
+      console.log('records:', this.records);
+    })
+    .catch(error => {
+      this.error = error;
+      this.records = null;
+      //console.log("errors", this.error);
+    });
+    
     dialog.show();
-}
+    
+  }
+
+  handleViewAll(event) {
+    getAllTagRelationships({ recordId: '$recordId' })
+    if (error) {
+      console.error(error);
+    } else if (data) {
+      this.tagAllRelationships = data;
+      this.tagsAll = this.tagAllRelationships.map((tr) => ({
+        name: tr.Tag,
+        id: tr.Id,
+        url: this.generateUrl(tr.Category, tr.Tag, tr.Color)
+      }));
+    }
+    
+    dialog.show();
+    
+  }
 }
