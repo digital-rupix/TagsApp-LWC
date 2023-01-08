@@ -50,6 +50,6 @@ Finally, the Unofficial SF `BasePacks` need to be installed from here: `https://
 
 # Thanks and Credit
 
-Special thanks to [@mitchspano](https://github.com/mitchspano)
-[@jamessimone](https://github.com/jamessimone)
+Special thanks to [@mitchspano](https://github.com/mitchspano), 
+[@jamessimone](https://github.com/jamessimone), and 
 [@jkranz-rk](https://github.com/jkranz-rk) for helping me sort through the learning process during the creation of this package. It would still be floundering with you all. :) 
